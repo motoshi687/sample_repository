@@ -94,7 +94,7 @@ function timeover() {
 //「次の問題へ」を押下したとき
 document.getElementById("myLink").addEventListener("click", (e) => {
   e.preventDefault();
-  window.location.href = window.location.pathname + "?total_questions=" + total_questions + "&questionnumber=" + questionNumber + "&correctcount=" + correctCount;
+  window.location.href = window.location.pathname + "?total_questions=" + total_questions + "&question_time=" + question_time + "&questionnumber=" + questionNumber + "&correctcount=" + correctCount;
 });
 //「結果発表へ」を押下したとき
 document.getElementById("result").addEventListener("click", (e) => {
