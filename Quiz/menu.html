@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メニュー</title>
+    <style>
+        body {
+            text-align: center;
+            background-color:#FFF8E7;
+            font-family: cursive;
+        }
+        h1 {
+            color: red;
+            margin-bottom: 2px;
+        }
+        button {
+            font-family: cursive;
+            border-radius: 8px;
+            font-size: 24px;
+            width: 200px;
+            height: 40px;
+        }
+        #description {
+            border: 2px solid;
+            border-radius: 8px;
+            width: 1000px;
+            height: 150px;
+            display: inline-flex;
+            justify-content: center;
+	        align-items: center;
+            margin-top: 2px;
+        }
+        #confirm_btn {
+            color: red;
+            font-weight: bold;
+            width: auto;
+            margin-top: 60px;
+        }
+        .underlined_quizcount {
+            text-decoration: underline;
+            color:blue;
+        }
+        .underlined_time {
+            text-decoration: underline;
+            color:green;
+        }
+        .any-ok {
+            margin-top: 10px;
+        }
+        .question-count_select-btn.selected, .question-time_select-btn.selected {
+            background-color: orange;
+            color: white;
+            font-weight: bold;
+        }
+        .question-count_hidden, .question-time_hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 >常識クイズに挑戦だ！！</h1>
+    <h2 id="description"><<説明>><br>
+        このWEBアプリケーションは簡単な常識クイズだよ。<br>
+        クイズは３択でとても簡単だから、気軽に取り組んでね。<br>
+        １回でできるクイズの数と、１問の制限時間がいるかどうか選んでね。</h2>
+    <h2 class="underlined_quizcount">クイズの数はどうする？</h2>
+    <div>
+        <div class="question-count">
+            <button class="question-count_select-btn" value="5">５問</button>
+            <button class="question-count_select-btn" value="10">１０問</button> 
+            <button class="question-count_select-btn" value="20">２０問</button> 
+        </div>
+        <div class="any-ok">
+            <button class="question-count_select-btn" value="0">どれでもいいよ</button>
+        </div>
+    </div>
+    <h2 class="underlined_time">１問の制限時間はどうする？</h2>
+    <div>
+        <div class="question-time">
+            <button class="question-time_select-btn" value="10">１０秒で</button>
+            <button class="question-time_select-btn" value="0">制限なし</button> 
+        </div>
+    </div>
+    <a href="quiz.html">
+        <button id="confirm_btn" class="question-count_hidden question-time_hidden">常識クイズに今すぐ挑戦！！</button>
+    </a>
+    <script>
+        let total_questions = "";
+        let question_time = "";
+        let total_questions_arraynum = 0;
+        const total_questions_list = ["5","10","20"];
+        const buttons_1 = document.querySelectorAll('.question-count_select-btn');
+        const buttons_2 = document.querySelectorAll('.question-time_select-btn');
+        const confirm_btn = document.getElementById("confirm_btn");
+        buttons_1.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons_1.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                confirm_btn.classList.remove('question-count_hidden');
+                if (btn.value === "0"){
+                    total_questions_arraynum = Math.floor(Math.random() * total_questions_list.length);
+                    total_questions = total_questions_list[total_questions_arraynum];
+                } else
+                    total_questions = btn.value;
+            });
+        });
+        buttons_2.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons_2.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                confirm_btn.classList.remove('question-time_hidden');
+                question_time = btn.value;
+            });
+        });
+        confirm_btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.location.href = "./quiz.html?total_questions=" + total_questions + "&question_time=" + question_time;
+        });
+    </script>
+</body>
+</html>

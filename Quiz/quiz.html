@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クイズ</title>
+    <style>
+        body {
+            text-align: center;
+            background-color:#FFF8E7;
+            font-family: cursive;
+        }
+        #question {
+            border: 2px solid;
+            border-radius: 8px;
+            display: inline-flex;
+            background-color: bisque;
+            width: 1200px;
+            height: 60px;
+            justify-content: center;
+	        align-items: center;
+        }
+        button {
+            font-family: cursive;
+            border-radius: 8px;
+            font-size: 24px;
+            width: 300px;
+            height: 60px;
+        }
+        #option1 {
+            background-color: orange;
+        }
+        #option2 {
+            background-color: skyblue;
+        }
+        #option3 {
+            background-color: greenyellow;
+        }
+        .correct {
+           color : green;
+           font-size: 30px;
+        }
+        .incorrect {
+           color : red;
+           font-size: 30px;
+        }
+        a {
+            font-size : 20px;
+            font-weight: bold;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="quiz_title"></h1>
+    <h2 id="questionNumber"></h2>
+    <h2 id="question"></h2> 
+    <div>
+        <button id="option1"></button>
+        <button id="option2"></button>
+        <button id="option3"></button>
+    </div>
+    <h2 id="judgement"></h2>
+    <a href="#" id="myLink" class="hidden">次の問題へ</a>
+    <a href="./result.html" id="result" class="hidden">結果発表へ</a>
+    <h3 class="timer" id="countdown"></h3>
+    <script type="module" src="main.js"></script>
+</body>
+</html>
