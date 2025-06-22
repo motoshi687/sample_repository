@@ -36,6 +36,7 @@ const judge_text = document.getElementById("judgement");
 const mylink = document.getElementById("myLink");
 const result = document.getElementById("result");
 const countDown = document.getElementById('countdown'); 
+let countDownStop = false;
 
 //選択肢１のボタンを押下したとき
 btn_option1.addEventListener('click', () => {
@@ -59,6 +60,7 @@ btn_option3.addEventListener('click', () => {
 function judge(option,number) {
     let judgeText = "";
     const answer = quiz[number].answer;
+    countDownStop = true;
     if (option === answer) {
         judgeText = "正解です！";
         judge_text.classList.add("correct");
@@ -116,6 +118,8 @@ window.onload = function() {
     function updateCountDown(){
         const now = new Date().getTime();
         const distance = targetTime - now;
+        if(countDownStop)
+            clearInterval(interval);
         if(distance <= 0){
             clearInterval(interval);
             countDown.textContent = "残り0秒";
